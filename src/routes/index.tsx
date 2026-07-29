@@ -72,12 +72,12 @@ const services = [
   },
   {
     img: project2,
-    title: "Hospitality Lighting",
+    title: "Hospitality",
     body: "Elegant lighting solutions that create warm, memorable experiences for hotels, restaurants, cafés, resorts, and luxury hospitality spaces.",
   },
   {
     img: project1,
-    title: "Residential Lighting",
+    title: "Residential",
     body: "Modern decorative lighting designed to complement contemporary homes with comfort, sophistication, and timeless elegance.",
   },
   {
@@ -300,9 +300,9 @@ function HomePage() {
           </Reveal>
           <Reveal delay={0.15} className="lg:col-span-6 lg:col-start-7 lg:pt-12">
             <p className="text-lg leading-relaxed text-muted-foreground">
-              LAM International delivers premium lighting solutions that combine
-              innovation, performance, and design excellence. We collaborate with
-              architects, consultants, contractors, and developers to create lighting
+              LAM International General Trading LLC delivers premium lighting solutions
+              that combine innovation, performance, and design excellence. We collaborate
+              with architects, consultants, contractors, and developers to create lighting
               environments that elevate commercial, retail, hospitality, and residential
               spaces.
             </p>

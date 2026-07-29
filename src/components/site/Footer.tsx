@@ -60,8 +60,8 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-subhead">
               <li>Retail Lighting</li>
               <li>Commercial Lighting</li>
-              <li>Hospitality Lighting</li>
-              <li>Residential Lighting</li>
+              <li>Hospitality</li>
+              <li>Residential</li>
               <li>Lighting Design</li>
             </ul>
           </div>
@@ -69,28 +69,32 @@ export function Footer() {
           <div className="lg:col-span-3">
             <h4 className="mb-5 text-sm font-medium tracking-wide text-white">Contact</h4>
             <address className="not-italic text-sm leading-relaxed text-subhead">
-              Business Bay
+              LAM International General Trading LLC
               <br />
-              Dubai, United Arab Emirates
+              316, European Business Centre, DIP-1
+              <br />
+              P.O. Box: 451903
+              <br />
+              Dubai - UAE
             </address>
             <a
-              href="mailto:hello@laminternational.com"
+              href="mailto:info@lam-international.com"
               className="mt-4 inline-flex items-center gap-2 text-sm text-gold hover:text-gold-soft"
             >
-              hello@laminternational.com
+              info@lam-international.com
               <ArrowUpRight size={14} />
             </a>
             <a
-              href="tel:+97145550123"
+              href="tel:+97142363350"
               className="mt-2 block text-sm text-subhead transition hover:text-gold"
             >
-              +971 4 555 0123
+              +971 4 236 3350
             </a>
           </div>
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-[#242424] pt-8 text-[11px] tracking-[0.25em] uppercase text-label md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} LAM International. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} LAM International General Trading LLC. All rights reserved.</span>
           <span>Premium Lighting Solutions</span>
         </div>
       </div>

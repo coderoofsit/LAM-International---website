@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Premium architectural and commercial lighting solutions designed to enhance every environment with innovation, efficiency, and timeless design.",
       },
-      { name: "author", content: "LAM International" },
+      { name: "author", content: "LAM International General Trading LLC" },
       { property: "og:title", content: "LAM International — Premium Lighting Solutions" },
       {
         property: "og:description",
@@ -90,7 +90,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

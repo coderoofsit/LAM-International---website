@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight, MapPin, X } from "lucide-react";
-import { PageLayout } from "../components/site/PageLayout";
+import { PageLayout, PageHero } from "../components/site/PageLayout";
 import { Reveal } from "../components/site/Reveal";
 import { projects, type Project } from "../data/projects";
 
@@ -71,23 +71,16 @@ function ProjectsPage() {
 
   return (
     <PageLayout>
-      {/* TITLE */}
-      <section className="bg-cream pt-36 pb-10 lg:pt-44 lg:pb-16">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <Reveal>
-            <p className="text-[11px] font-medium tracking-[0.35em] uppercase text-gold">
-              Portfolio
-            </p>
-            <h1 className="mt-4 font-display text-6xl leading-none text-white sm:text-7xl lg:text-[6.5rem]">
-              Projects
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-subhead lg:text-lg">
-              A curated collection of spaces elevated through precision lighting —
-              photographed to celebrate atmosphere, architecture, and craft.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        compact
+        eyebrow="Portfolio"
+        title={
+          <>
+            Signature <span className="text-gold">Projects</span>
+          </>
+        }
+        intro="A curated collection of spaces elevated through precision lighting — photographed to celebrate atmosphere, architecture, and craft."
+      />
 
       {/* UNIFIED GALLERY */}
       <section className="bg-cream pb-28 lg:pb-36">

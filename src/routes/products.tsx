@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Search, X } from "lucide-react";
-import { PageLayout } from "../components/site/PageLayout";
+import { PageLayout, PageHero } from "../components/site/PageLayout";
 import { Reveal } from "../components/site/Reveal";
 
 import product1 from "../assets/product-1.jpg";
@@ -10,9 +10,6 @@ import product2 from "../assets/product-2.jpg";
 import product3 from "../assets/product-3.jpg";
 import product4 from "../assets/product-4.jpg";
 import project4 from "../assets/project-4.jpg";
-import hero2 from "../assets/hero-2.jpg";
-import hero3 from "../assets/hero-3.jpg";
-import project1 from "../assets/project-1.jpg";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -21,12 +18,12 @@ export const Route = createFileRoute("/products")({
       {
         name: "description",
         content:
-          "Browse our complete gallery of premium architectural and decorative lighting products — track lights, downlights, wall washers, gimbal, bay, and LED solutions.",
+          "Browse our focused range of premium lighting — track lights, down lights, wall washers, gimbal lights, bay lights, and LED lights.",
       },
       { property: "og:title", content: "LAM International — Products" },
       {
         property: "og:description",
-        content: "A unified gallery of premium lighting products.",
+        content: "Track, down, wall washer, gimbal, bay, and LED lighting solutions.",
       },
     ],
   }),
@@ -114,20 +111,6 @@ const products: Product[] = [
     ],
   },
   {
-    id: "led-high-bay",
-    name: "LED High Bay Lights",
-    img: product2,
-    summary: "Energy-efficient high bays for industrial-scale spaces.",
-    description:
-      "Energy-efficient LED high bays delivering strong illumination with lower operating costs for industrial and large commercial spaces.",
-    specs: [
-      { label: "Application", value: "Industrial · Logistics" },
-      { label: "Source", value: "LED High Bay" },
-      { label: "Controls", value: "Optional dimming / sensors" },
-      { label: "Life", value: "Long-life LED modules" },
-    ],
-  },
-  {
     id: "led",
     name: "LED Lights",
     img: product1,
@@ -139,76 +122,6 @@ const products: Product[] = [
       { label: "Efficiency", value: "Energy saving LED" },
       { label: "Color", value: "Warm to Cool White" },
       { label: "Benefit", value: "Low maintenance" },
-    ],
-  },
-  {
-    id: "smart",
-    name: "Smart Lighting Solutions",
-    img: product3,
-    summary: "Intelligent controls for comfort and energy efficiency.",
-    description:
-      "Intelligent lighting systems with control options that optimize comfort, atmosphere, and energy use across modern buildings.",
-    specs: [
-      { label: "Application", value: "Smart buildings · Offices" },
-      { label: "Controls", value: "Dimming · Scenes · Sensors" },
-      { label: "Integration", value: "Building systems ready" },
-      { label: "Benefit", value: "Efficiency + comfort" },
-    ],
-  },
-  {
-    id: "pendant",
-    name: "Decorative Pendants",
-    img: hero2,
-    summary: "Statement fixtures that define luxury interiors.",
-    description:
-      "Decorative pendant collections crafted to create focal points in hospitality lobbies, dining spaces, and refined residences.",
-    specs: [
-      { label: "Application", value: "Hospitality · Residential" },
-      { label: "Style", value: "Decorative / Feature" },
-      { label: "Finish", value: "Brass · Black · Custom" },
-      { label: "Source", value: "LED Compatible" },
-    ],
-  },
-  {
-    id: "linear",
-    name: "Linear Profile Lights",
-    img: hero3,
-    summary: "Continuous lines of light for modern architecture.",
-    description:
-      "Sleek linear profiles for coves, ceilings, and architectural edges — delivering clean, continuous illumination.",
-    specs: [
-      { label: "Application", value: "Coves · Ceilings · Facades" },
-      { label: "Mounting", value: "Recessed / Surface" },
-      { label: "Color", value: "2700K – 4000K" },
-      { label: "Diffuser", value: "Opal / Clear" },
-    ],
-  },
-  {
-    id: "accent",
-    name: "Accent Spotlights",
-    img: project1,
-    summary: "Precision accents for art, displays, and details.",
-    description:
-      "Compact accent spotlights engineered for high-CRI highlighting of art, merchandising, and architectural features.",
-    specs: [
-      { label: "Application", value: "Galleries · Retail · Homes" },
-      { label: "Beam", value: "Narrow / Medium" },
-      { label: "CRI", value: "≥ 90" },
-      { label: "Dimming", value: "Compatible" },
-    ],
-  },
-  {
-    id: "outdoor",
-    name: "Outdoor Architectural Lights",
-    img: product4,
-    summary: "Weather-ready lighting for façades and landscapes.",
-    description:
-      "Durable outdoor architectural luminaires designed to graze façades, pathways, and landscapes with refined nighttime presence.",
-    specs: [
-      { label: "Application", value: "Facades · Pathways · Gardens" },
-      { label: "IP Rating", value: "IP65+" },
-      { label: "Finish", value: "Powder coated" },
-      { label: "Source", value: "LED" },
     ],
   },
 ];
@@ -236,44 +149,34 @@ function ProductsPage() {
 
   return (
     <PageLayout>
-      {/* Title */}
-      <section className="bg-cream pt-36 pb-8 lg:pt-44 lg:pb-10">
-        <div className="mx-auto max-w-[1280px] px-6 lg:px-10">
-          <Reveal>
-            <p className="text-[11px] font-medium tracking-[0.32em] uppercase text-gold">
-              Collection
-            </p>
-            <h1 className="mt-4 font-display text-5xl leading-none text-white sm:text-6xl lg:text-7xl">
-              Products
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-subhead lg:text-lg">
-              A unified gallery of premium lighting — browse every fixture in one
-              refined collection.
-            </p>
-          </Reveal>
-
-          {/* Search */}
-          <Reveal delay={0.1}>
-            <div className="relative mt-10 max-w-md">
-              <Search
-                size={16}
-                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-label"
-              />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setVisibleCount(PAGE_SIZE);
-                }}
-                placeholder="Search products by name…"
-                className="luxury-input !pl-11"
-                aria-label="Search products"
-              />
-            </div>
-          </Reveal>
+      <PageHero
+        compact
+        eyebrow="Collection"
+        title={
+          <>
+            Lighting <span className="text-gold">Products</span>
+          </>
+        }
+        intro="Our focused range of premium lighting — track, down, wall washer, gimbal, bay, and LED lights for every project."
+      >
+        <div className="relative w-full max-w-md">
+          <Search
+            size={16}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-label"
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setVisibleCount(PAGE_SIZE);
+            }}
+            placeholder="Search products by name…"
+            className="luxury-input !pl-11"
+            aria-label="Search products"
+          />
         </div>
-      </section>
+      </PageHero>
 
       {/* Unified gallery */}
       <section className="bg-cream pb-28 lg:pb-36">
