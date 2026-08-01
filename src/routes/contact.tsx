@@ -42,6 +42,7 @@ const cards: ContactCard[] = [
       "P.O. Box: 451903",
       "Dubai – UAE",
     ],
+    href: "https://maps.app.goo.gl/oLkXZ9Yrc6hUsLL49",
   },
   {
     icon: Phone,
@@ -59,11 +60,11 @@ const cards: ContactCard[] = [
     icon: Clock,
     title: "Business Hours",
     lines: [
-      "Sunday – Thursday",
-      "09:00 AM – 06:00 PM",
-      "Saturday",
-      "10:00 AM – 04:00 PM",
+      "Monday – Thursday",
+      "8:30 AM – 6:00 PM",
       "Friday",
+      "8:30 AM – 12:00 PM, 2:00 – 5:00 PM",
+      "Saturday – Sunday",
       "Closed",
     ],
   },
@@ -144,9 +145,9 @@ function ContactPage() {
 
       <div className="relative overflow-hidden bg-[#0D0D0D]">
         {/* CONTACT CARDS */}
-        <section className="relative pb-20 pt-4 lg:pb-24 lg:pt-6">
-          <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <section className="relative pb-14 pt-4 sm:pb-20 lg:pb-24 lg:pt-6">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-10">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6">
               {cards.map((card, i) => (
                 <motion.article
                   key={card.title}
@@ -181,9 +182,13 @@ function ContactPage() {
                     {card.href ? (
                       <a
                         href={card.href}
-                        className="block transition-colors duration-300 hover:text-[#E0BC74]"
+                        target={card.href.startsWith("http") ? "_blank" : undefined}
+                        rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="block space-y-1.5 transition-colors duration-300 hover:text-[#E0BC74]"
                       >
-                        {card.lines[0]}
+                        {card.lines.map((line) => (
+                          <p key={line}>{line}</p>
+                        ))}
                       </a>
                     ) : card.title === "Business Hours" ? (
                       <div className="space-y-3">

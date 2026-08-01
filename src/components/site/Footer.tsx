@@ -5,10 +5,10 @@ import { Logo } from "./Logo";
 export function Footer() {
   return (
     <footer className="bg-footer text-white">
-      <div className="mx-auto max-w-[1280px] px-6 py-20 lg:px-10">
-        <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-12">
+      <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-6 sm:py-20 lg:px-10">
+        <div className="grid gap-10 sm:gap-14 md:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Logo tone="gold" />
+            <Logo />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-subhead">
               Lighting Spaces. Empowering Brands. Creating Lasting Impressions. LAM
               International delivers premium architectural and commercial lighting
@@ -69,13 +69,20 @@ export function Footer() {
           <div className="lg:col-span-3">
             <h4 className="mb-5 text-sm font-medium tracking-wide text-white">Contact</h4>
             <address className="not-italic text-sm leading-relaxed text-subhead">
-              LAM International General Trading LLC
-              <br />
-              316, European Business Centre, DIP-1
-              <br />
-              P.O. Box: 451903
-              <br />
-              Dubai - UAE
+              <a
+                href="https://maps.app.goo.gl/oLkXZ9Yrc6hUsLL49"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-gold"
+              >
+                LAM International General Trading LLC
+                <br />
+                316, European Business Centre, DIP-1
+                <br />
+                P.O. Box: 451903
+                <br />
+                Dubai - UAE
+              </a>
             </address>
             <a
               href="mailto:info@lam-international.com"

@@ -83,9 +83,9 @@ function ProjectsPage() {
       />
 
       {/* UNIFIED GALLERY */}
-      <section className="bg-cream pb-28 lg:pb-36">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <section className="bg-cream pb-16 sm:pb-24 lg:pb-36">
+        <div className="mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-10">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4 lg:gap-8">
             {projects.map((project, i) => (
               <Reveal key={project.id} delay={Math.min(i * 0.03, 0.24)}>
                 <article
@@ -110,8 +110,8 @@ function ProjectsPage() {
                         decoding="async"
                         className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent opacity-60 transition duration-500 group-hover:opacity-80" />
-                      <div className="absolute inset-0 flex items-end justify-between p-5 opacity-0 transition duration-500 group-hover:opacity-100">
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent opacity-70 transition duration-500 group-hover:opacity-80 md:opacity-60" />
+                      <div className="absolute inset-0 flex items-end justify-between p-4 opacity-100 transition duration-500 sm:p-5 md:opacity-0 md:group-hover:opacity-100">
                         <span className="inline-flex items-center gap-2 rounded-[10px] bg-gold px-4 py-2 text-[10px] font-medium tracking-[0.22em] uppercase text-ink shadow-sm">
                           View Project
                           <ArrowUpRight size={13} />
@@ -120,9 +120,9 @@ function ProjectsPage() {
                     </div>
                   </button>
 
-                  <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
+                  <div className="flex flex-1 flex-col px-4 pb-5 pt-4 sm:px-5 sm:pt-5">
                     <div className="flex items-start justify-between gap-3">
-                      <h2 className="font-display text-2xl leading-tight text-charcoal">
+                      <h2 className="font-display text-xl leading-tight text-charcoal sm:text-2xl">
                         {project.title}
                       </h2>
                       <button
@@ -157,7 +157,7 @@ function ProjectsPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/80 p-3 backdrop-blur-md sm:p-6"
+            className="fixed inset-0 z-[100] flex items-end justify-center bg-ink/80 p-0 backdrop-blur-md sm:items-center sm:p-4 md:p-6"
             onClick={close}
           >
             <motion.div
@@ -166,18 +166,18 @@ function ProjectsPage() {
               exit={{ opacity: 0, y: 16, scale: 0.98 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative grid max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-2xl border border-stone bg-card shadow-2xl lg:grid-cols-[1.35fr_1fr]"
+              className="relative grid max-h-[92svh] w-full max-w-6xl overflow-y-auto overflow-x-hidden rounded-t-2xl border border-stone bg-card shadow-2xl sm:rounded-2xl lg:grid-cols-[1.35fr_1fr] lg:overflow-hidden"
             >
               <button
                 type="button"
                 onClick={close}
                 aria-label="Close"
-                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-beige text-white shadow-md transition hover:border-gold hover:bg-gold hover:text-ink"
+                className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-beige text-white shadow-md transition hover:border-gold hover:bg-gold hover:text-ink sm:right-4 sm:top-4"
               >
                 <X size={16} />
               </button>
 
-              <div className="relative bg-ink">
+              <div className="relative shrink-0 bg-ink">
                 <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[520px]">
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -237,12 +237,12 @@ function ProjectsPage() {
                 </div>
               </div>
 
-              <div className="flex max-h-[92vh] flex-col overflow-y-auto p-7 sm:p-10">
+              <div className="flex flex-col overflow-y-auto p-5 sm:p-7 lg:max-h-[92svh] lg:p-10">
                 <p className="flex items-center gap-1.5 text-[11px] tracking-[0.28em] uppercase text-gold">
                   <MapPin size={12} />
                   {active.location}
                 </p>
-                <h2 className="mt-4 font-display text-3xl leading-tight text-white sm:text-4xl">
+                <h2 className="mt-3 pr-10 font-display text-2xl leading-tight text-white sm:mt-4 sm:text-3xl lg:text-4xl">
                   {active.title}
                 </h2>
                 <p className="mt-3 text-sm font-medium text-subhead">

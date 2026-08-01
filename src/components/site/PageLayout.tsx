@@ -43,7 +43,9 @@ export function PageHero({
   return (
     <section
       className={`relative overflow-hidden bg-[#0D0D0D] ${
-        compact ? "pt-32 pb-10 lg:pt-40 lg:pb-12" : "pt-36 pb-16 lg:pt-44 lg:pb-20"
+        compact
+          ? "pt-28 pb-8 sm:pt-32 sm:pb-10 lg:pt-40 lg:pb-12"
+          : "pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pt-44 lg:pb-20"
       }`}
     >
       {/* Ambient gold atmosphere */}
@@ -71,26 +73,26 @@ export function PageHero({
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-10">
         <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className={`flex items-center gap-3 ${centered ? "justify-center" : ""}`}
+            className={`flex items-center gap-2 sm:gap-3 ${centered ? "justify-center" : ""}`}
           >
-            <span className="h-px w-8 bg-gold/80" aria-hidden />
-            <p className="text-[11px] font-medium tracking-[0.4em] uppercase text-gold">
+            <span className="h-px w-6 bg-gold/80 sm:w-8" aria-hidden />
+            <p className="text-[10px] font-medium tracking-[0.32em] uppercase text-gold sm:text-[11px] sm:tracking-[0.4em]">
               {eyebrow}
             </p>
-            <span className="h-px w-8 bg-gold/80" aria-hidden />
+            <span className="h-px w-6 bg-gold/80 sm:w-8" aria-hidden />
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.95, delay: 0.1, ease }}
-            className="mt-6 font-display text-[clamp(2.75rem,7vw,5.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white text-balance"
+            className="mt-5 font-display text-[clamp(2.25rem,8vw,5.25rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white text-balance sm:mt-6"
           >
             {title}
           </motion.h1>

@@ -2,11 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { PageLayout, PageHero } from "../components/site/PageLayout";
-import hero2 from "../assets/hero-2.jpg";
-import hero3 from "../assets/hero-3.jpg";
-import project1 from "../assets/project-1.jpg";
-import project5 from "../assets/project-5.jpg";
-import project6 from "../assets/project-6.jpg";
+import {
+  lightingDesign01,
+  commercialLighting01,
+  genericResidential01,
+  linearLights03,
+  hospitalityLighting02,
+} from "../assets/media";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -57,9 +59,9 @@ const values = [
 ];
 
 const gallery = [
-  { img: project1, label: "Residential", alt: "Residential lighting interior" },
-  { img: project5, label: "Architecture", alt: "Architectural staircase lighting" },
-  { img: project6, label: "Hospitality", alt: "Hospitality spa lighting" },
+  { img: genericResidential01, label: "Residential", alt: "Residential lighting interior" },
+  { img: linearLights03, label: "Architecture", alt: "Architectural staircase lighting" },
+  { img: hospitalityLighting02, label: "Hospitality", alt: "Hospitality spa lighting" },
 ];
 
 function AboutPage() {
@@ -81,9 +83,9 @@ function AboutPage() {
 
       <div className="relative overflow-hidden bg-[#0D0D0D]">
         {/* STORY */}
-        <section className="relative pb-24 pt-10 lg:pb-32 lg:pt-14">
-          <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
-            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+        <section className="relative pb-16 pt-8 sm:pb-24 sm:pt-10 lg:pb-32 lg:pt-14">
+          <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-10">
+            <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16 xl:gap-20">
               {/* Image column */}
               <motion.div
                 initial={{ opacity: 0, x: -28 }}
@@ -95,7 +97,7 @@ function AboutPage() {
                 <div className="relative overflow-hidden rounded-[22px] border border-stone/80 shadow-[0_28px_60px_-30px_rgba(0,0,0,0.85)]">
                   <div className="aspect-[4/5]">
                     <img
-                      src={hero3}
+                      src={lightingDesign01}
                       alt="Architectural lighting interior"
                       className="h-full w-full object-cover"
                       loading="lazy"
@@ -114,7 +116,7 @@ function AboutPage() {
                 >
                   <div className="aspect-[5/4]">
                     <img
-                      src={hero2}
+                      src={commercialLighting01}
                       alt="Luxury lighting atmosphere"
                       className="h-full w-full object-cover"
                       loading="lazy"

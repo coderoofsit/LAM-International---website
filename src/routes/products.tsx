@@ -1,15 +1,41 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Search, X } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import { PageLayout, PageHero } from "../components/site/PageLayout";
 import { Reveal } from "../components/site/Reveal";
 
-import product1 from "../assets/product-1.jpg";
-import product2 from "../assets/product-2.jpg";
-import product3 from "../assets/product-3.jpg";
-import product4 from "../assets/product-4.jpg";
-import project4 from "../assets/project-4.jpg";
+import {
+  trackLights01,
+  trackLights02,
+  trackLights03,
+  trackLights04,
+  downlights01,
+  downlights02,
+  downlights03,
+  downlights04,
+  wallWashers01,
+  wallWashers02,
+  wallWashers03,
+  wallWashers04,
+  spotlights01,
+  spotlights02,
+  spotlights03,
+  spotlights04,
+  linearLights01,
+  linearLights02,
+  linearLights03,
+  linearLights04,
+  pendantLighting01,
+  pendantLighting02,
+  pendantLighting03,
+  pendantLighting04,
+} from "../assets/media";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -18,12 +44,13 @@ export const Route = createFileRoute("/products")({
       {
         name: "description",
         content:
-          "Browse our focused range of premium lighting — track lights, down lights, wall washers, gimbal lights, bay lights, and LED lights.",
+          "Browse our focused range of premium lighting — track lights, downlights, wall washers, spotlights, linear lights, and pendant lighting.",
       },
       { property: "og:title", content: "LAM International — Products" },
       {
         property: "og:description",
-        content: "Track, down, wall washer, gimbal, bay, and LED lighting solutions.",
+        content:
+          "Track, downlight, wall washer, spotlight, linear, and pendant lighting solutions.",
       },
     ],
   }),
@@ -33,7 +60,7 @@ export const Route = createFileRoute("/products")({
 type Product = {
   id: string;
   name: string;
-  img: string;
+  images: string[];
   summary: string;
   description: string;
   specs: { label: string; value: string }[];
@@ -43,7 +70,7 @@ const products: Product[] = [
   {
     id: "track",
     name: "Track Lights",
-    img: product2,
+    images: [trackLights01, trackLights02, trackLights03, trackLights04],
     summary: "Flexible directional lighting for retail and gallery spaces.",
     description:
       "Flexible directional lighting systems designed for retail displays, galleries, and feature zones where precision aiming matters.",
@@ -56,8 +83,8 @@ const products: Product[] = [
   },
   {
     id: "down",
-    name: "Down Lights",
-    img: product1,
+    name: "Downlights",
+    images: [downlights01, downlights02, downlights03, downlights04],
     summary: "Clean recessed illumination with precise beam control.",
     description:
       "Clean recessed downlights with controlled glare and consistent color, ideal for commercial interiors and refined residential spaces.",
@@ -70,8 +97,8 @@ const products: Product[] = [
   },
   {
     id: "wall-washer",
-    name: "Wall Washer Lights",
-    img: product4,
+    name: "Wall Washers",
+    images: [wallWashers01, wallWashers02, wallWashers03, wallWashers04],
     summary: "Even vertical light that highlights architecture and texture.",
     description:
       "Even vertical illumination that reveals texture, architecture, and branded surfaces with a soft, continuous wash of light.",
@@ -83,55 +110,92 @@ const products: Product[] = [
     ],
   },
   {
-    id: "gimbal",
-    name: "Gimbal Lights",
-    img: product3,
-    summary: "Adjustable fixtures for focused accent and display lighting.",
+    id: "spotlights",
+    name: "Spotlights & Accent",
+    images: [spotlights01, spotlights02, spotlights03, spotlights04],
+    summary: "Focused accent lighting for displays, art, and feature zones.",
     description:
-      "Adjustable gimbal fixtures for accent and task lighting, offering precise aiming for merchandise, art, and architectural details.",
+      "High-CRI spotlights and accent fixtures for merchandise, artwork, and architectural details — precise aiming with controlled glare.",
     specs: [
-      { label: "Application", value: "Retail · Hospitality · Museums" },
+      { label: "Application", value: "Retail · Museums · Feature Zones" },
       { label: "Adjustability", value: "360° / Tilt" },
       { label: "Source", value: "LED COB" },
       { label: "CRI", value: "≥ 90" },
     ],
   },
   {
-    id: "bay",
-    name: "Bay Lights",
-    img: project4,
-    summary: "High-output solutions for warehouses and large interiors.",
+    id: "linear",
+    name: "Linear Lights",
+    images: [linearLights01, linearLights02, linearLights03, linearLights04],
+    summary: "Continuous lines of light for modern architectural interiors.",
     description:
-      "High-output bay lighting engineered for large volumes — warehouses, showrooms, and industrial facilities requiring reliable brightness.",
+      "Linear LED systems for offices, corridors, and open-plan spaces — clean geometry, even distribution, and refined ceiling aesthetics.",
     specs: [
-      { label: "Application", value: "Warehouses · Showrooms" },
-      { label: "Output", value: "High lumen packages" },
-      { label: "Mounting", value: "Suspended / Surface" },
-      { label: "Efficiency", value: "High lm/W" },
+      { label: "Application", value: "Offices · Corridors · Retail" },
+      { label: "Mounting", value: "Recessed / Surface / Suspended" },
+      { label: "Color", value: "3000K / 4000K" },
+      { label: "Distribution", value: "Direct / Indirect" },
     ],
   },
   {
-    id: "led",
-    name: "LED Lights",
-    img: product1,
-    summary: "Versatile LED systems built for lasting performance.",
+    id: "pendant",
+    name: "Pendant Lighting",
+    images: [pendantLighting01, pendantLighting02, pendantLighting03, pendantLighting04],
+    summary: "Statement pendants that define lobbies, dining, and lounges.",
     description:
-      "A versatile LED range built for efficiency, longevity, and consistent light quality across commercial and residential applications.",
+      "Decorative and architectural pendants that create focal moments in hospitality, residential, and commercial arrival spaces.",
     specs: [
-      { label: "Application", value: "Multi-sector" },
-      { label: "Efficiency", value: "Energy saving LED" },
-      { label: "Color", value: "Warm to Cool White" },
-      { label: "Benefit", value: "Low maintenance" },
+      { label: "Application", value: "Hospitality · Residential · Lobbies" },
+      { label: "Mounting", value: "Suspended" },
+      { label: "Finish", value: "Black / Brass / Custom" },
+      { label: "Style", value: "Decorative · Architectural" },
     ],
   },
 ];
 
 const PAGE_SIZE = 8;
 
+function ProductImageSlider({ images, name }: { images: string[]; name: string }) {
+  return (
+    <div className="relative h-full min-h-[280px] w-full bg-beige md:min-h-0">
+      <Swiper
+        key={name}
+        modules={[Autoplay, Pagination, EffectFade]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        speed={900}
+        autoplay={{ delay: 2800, disableOnInteraction: false }}
+        loop={images.length > 1}
+        pagination={{ clickable: true }}
+        className="product-detail-swiper h-full w-full"
+      >
+        {images.map((src, i) => (
+          <SwiperSlide key={`${name}-${i}`} className="h-full">
+            <img
+              src={src}
+              alt={`${name} — image ${i + 1}`}
+              className="h-full w-full object-cover"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+}
+
 function ProductsPage() {
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [active, setActive] = useState<Product | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActive(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -179,14 +243,14 @@ function ProductsPage() {
       </PageHero>
 
       {/* Unified gallery */}
-      <section className="bg-cream pb-28 lg:pb-36">
-        <div className="mx-auto max-w-[1280px] px-6 lg:px-10">
+      <section className="bg-cream pb-16 sm:pb-24 lg:pb-36">
+        <div className="mx-auto max-w-[1280px] px-5 sm:px-6 lg:px-10">
           {visible.length === 0 ? (
             <p className="py-20 text-center text-subhead">
               No products match your search.
             </p>
           ) : (
-            <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4 lg:gap-8">
               {visible.map((p, i) => (
                 <Reveal key={p.id} delay={Math.min(i * 0.04, 0.28)}>
                   <article className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-stone bg-card shadow-[0_14px_36px_-24px_rgba(0,0,0,0.65)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-gold hover:shadow-[0_24px_48px_-20px_rgba(0,0,0,0.8)]">
@@ -197,7 +261,7 @@ function ProductsPage() {
                     >
                       <div className="relative aspect-[3/4] overflow-hidden bg-beige">
                         <img
-                          src={p.img}
+                          src={p.images[0]}
                           alt={p.name}
                           loading="lazy"
                           decoding="async"
@@ -257,7 +321,7 @@ function ProductsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-end justify-center bg-black/75 p-0 backdrop-blur-md sm:items-center sm:p-4"
             onClick={() => setActive(null)}
           >
             <motion.div
@@ -266,28 +330,24 @@ function ProductsPage() {
               exit={{ opacity: 0, y: 16, scale: 0.98 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative grid max-h-[90vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-stone bg-card shadow-2xl md:grid-cols-2"
+              className="relative grid max-h-[92svh] w-full max-w-5xl overflow-y-auto overflow-x-hidden rounded-t-2xl border border-stone bg-card shadow-2xl sm:rounded-2xl md:grid-cols-2 md:overflow-hidden"
             >
               <button
                 onClick={() => setActive(null)}
                 aria-label="Close"
-                className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-beige text-white transition hover:border-gold hover:bg-gold hover:text-ink"
+                className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-beige text-white transition hover:border-gold hover:bg-gold hover:text-ink sm:right-4 sm:top-4"
               >
                 <X size={16} />
               </button>
-              <div className="aspect-square bg-beige md:aspect-auto">
-                <img
-                  src={active.img}
-                  alt={active.name}
-                  className="h-full w-full object-cover"
-                />
+              <div className="aspect-[4/3] shrink-0 overflow-hidden sm:aspect-square md:aspect-auto md:min-h-[420px]">
+                <ProductImageSlider images={active.images} name={active.name} />
               </div>
-              <div className="overflow-y-auto p-8 lg:p-12">
-                <h3 className="font-display text-3xl text-white lg:text-4xl">
+              <div className="overflow-y-auto p-6 sm:p-8 lg:p-12">
+                <h3 className="pr-10 font-display text-2xl text-white sm:text-3xl lg:text-4xl">
                   {active.name}
                 </h3>
-                <p className="mt-6 leading-relaxed text-subhead">{active.description}</p>
-                <div className="mt-8 border-t border-stone pt-6">
+                <p className="mt-4 text-sm leading-relaxed text-subhead sm:mt-6 sm:text-base">{active.description}</p>
+                <div className="mt-6 border-t border-stone pt-5 sm:mt-8 sm:pt-6">
                   <p className="eyebrow mb-4">Specifications</p>
                   <dl className="space-y-3 text-sm">
                     {active.specs.map((s) => (
@@ -301,7 +361,7 @@ function ProductsPage() {
                     ))}
                   </dl>
                 </div>
-                <Link to="/contact" className="btn-gold mt-8">
+                <Link to="/contact" className="btn-gold mt-6 w-full sm:mt-8 sm:w-auto">
                   Enquire about this product
                 </Link>
               </div>

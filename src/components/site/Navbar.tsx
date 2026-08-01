@@ -35,10 +35,10 @@ export function Navbar() {
           scrolled ? "shadow-[0_8px_32px_-12px_rgba(0,0,0,0.65)]" : "shadow-none"
         }`}
       >
-        <div className="relative mx-auto flex h-[4.75rem] max-w-[1280px] items-center justify-between px-6 lg:h-[5.25rem] lg:px-10">
-          <Logo tone="gold" />
+        <div className="relative mx-auto flex h-[4.25rem] max-w-[1280px] items-center justify-between gap-3 px-4 sm:h-[4.75rem] sm:px-6 lg:h-[5.25rem] lg:px-10">
+          <Logo />
 
-          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-12 lg:flex">
+          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 xl:gap-12 lg:flex">
             {nav.map((item) => {
               const active = pathname === item.to;
               return (
@@ -63,8 +63,8 @@ export function Navbar() {
 
           <button
             onClick={() => setOpen((o) => !o)}
-            className="text-white transition hover:text-gold lg:hidden"
-            aria-label="Open menu"
+            className="shrink-0 p-1 text-white transition hover:text-gold lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -78,9 +78,9 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 flex flex-col bg-[#0F0F0F] pt-28 pb-10 px-8 lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col overflow-y-auto bg-[#0F0F0F] px-6 pb-10 pt-24 sm:px-8 sm:pt-28 lg:hidden"
           >
-            <nav className="flex flex-1 flex-col justify-center gap-7">
+            <nav className="flex flex-1 flex-col justify-center gap-5 sm:gap-7">
               {nav.map((item, i) => {
                 const active = pathname === item.to;
                 return (
@@ -92,7 +92,7 @@ export function Navbar() {
                   >
                     <Link
                       to={item.to}
-                      className={`font-display text-4xl transition ${
+                      className={`font-display text-3xl transition sm:text-4xl ${
                         active ? "text-gold" : "text-white hover:text-gold"
                       }`}
                     >
@@ -105,7 +105,7 @@ export function Navbar() {
             <Link to="/contact" className="btn-outline-dark w-full">
               Enquire
             </Link>
-            <div className="mt-8 text-xs tracking-[0.3em] uppercase text-label">
+            <div className="mt-8 text-[10px] tracking-[0.24em] uppercase text-label sm:text-xs sm:tracking-[0.3em]">
               LAM International — Lighting Spaces
             </div>
           </motion.div>
