@@ -4,6 +4,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { ScrollProgress } from "./ScrollProgress";
 import { BackToTop } from "./BackToTop";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,6 +15,7 @@ export function PageLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <main className="min-h-screen bg-cream">{children}</main>
       <Footer />
+      <WhatsAppButton />
       <BackToTop />
     </>
   );

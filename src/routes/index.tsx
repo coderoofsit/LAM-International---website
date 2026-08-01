@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -208,10 +208,19 @@ function HomePage() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
 
+  useEffect(() => {
+    if (window.location.hash !== "#hero") return;
+    const timer = window.setTimeout(() => {
+      document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <PageLayout>
       {/* HERO — full-bleed slides kept on all breakpoints */}
       <section
+        id="hero"
         ref={heroRef}
         className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-[#121212] sm:min-h-[640px]"
       >
