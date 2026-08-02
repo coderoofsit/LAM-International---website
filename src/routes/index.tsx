@@ -22,6 +22,7 @@ import {
 import { PageLayout } from "../components/site/PageLayout";
 import { Reveal } from "../components/site/Reveal";
 import { Counter } from "../components/site/Counter";
+import { projects as projectsData } from "../data/projects";
 
 import {
   home1_01,
@@ -42,11 +43,6 @@ import {
   spotlights01,
   linearLights01,
   pendantLighting01,
-  retailLuxury02,
-  commercialLighting02,
-  hospitalityLighting02,
-  pendantLighting03,
-  linearLights04,
   commercialLighting01,
 } from "../assets/media";
 
@@ -183,14 +179,11 @@ const reasons = [
   },
 ];
 
-const projects = [
-  { img: retailLuxury02, title: "Retail Flagship", category: "Retail" },
-  { img: commercialLighting02, title: "Corporate Workspace", category: "Commercial" },
-  { img: hospitalityLighting02, title: "Grand Ballroom", category: "Hospitality" },
-  { img: genericResidential01, title: "Private Residence", category: "Residential" },
-  { img: pendantLighting03, title: "Villa Staircase", category: "Residential" },
-  { img: linearLights04, title: "Spa Retreat", category: "Hospitality" },
-];
+const projects = projectsData.map((p) => ({
+  img: p.cover,
+  title: p.title,
+  category: `Retail · ${p.location.split(",")[0].trim()}`,
+}));
 
 const process = [
   { title: "Consultation", body: "Understanding project goals." },
@@ -331,7 +324,7 @@ function HomePage() {
           </Reveal>
           <Reveal delay={0.15} className="lg:col-span-6 lg:col-start-7 lg:pt-12">
             <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              LAM International General Trading LLC delivers premium lighting solutions
+              LAM International delivers premium lighting solutions
               that combine innovation, performance, and design excellence. We collaborate
               with architects, consultants, contractors, and developers to create lighting
               environments that elevate commercial, retail, hospitality, and residential
@@ -500,7 +493,7 @@ function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-2 lg:max-w-4xl">
             {projects.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.06}>
                 <Link

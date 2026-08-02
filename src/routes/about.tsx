@@ -78,7 +78,7 @@ function AboutPage() {
             Creating Lasting Impressions.
           </>
         }
-        intro="At LAM International General Trading LLC, we specialize in delivering innovative lighting solutions that combine performance, efficiency, and design excellence."
+        intro="At LAM International, we specialize in delivering innovative lighting solutions that combine performance, efficiency, and design excellence."
       />
 
       <div className="relative overflow-hidden bg-[#0D0D0D]">

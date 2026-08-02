@@ -75,7 +75,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="transition hover:text-gold"
               >
-                LAM International General Trading LLC
+                LAM International
                 <br />
                 316, European Business Centre, DIP-1
                 <br />
@@ -101,7 +101,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-[#242424] pt-8 text-[11px] tracking-[0.25em] uppercase text-label md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} LAM International General Trading LLC. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} LAM International. All rights reserved.</span>
           <span>Premium Lighting Solutions</span>
         </div>
       </div>

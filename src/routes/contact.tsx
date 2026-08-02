@@ -11,13 +11,13 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact LAM International General Trading LLC — office address, phone, email, and business hours in Dubai.",
+          "Contact LAM International — office address, phone, email, and business hours in Dubai.",
       },
       { property: "og:title", content: "Contact LAM International" },
       {
         property: "og:description",
         content:
-          "Reach LAM International General Trading LLC using our Dubai office contact details.",
+          "Reach LAM International using our Dubai office contact details.",
       },
     ],
   }),
@@ -36,7 +36,7 @@ const cards: ContactCard[] = [
     icon: MapPin,
     title: "Office Address",
     lines: [
-      "LAM International General Trading LLC",
+      "LAM International",
       "316, European Business Centre",
       "DIP-1",
       "P.O. Box: 451903",

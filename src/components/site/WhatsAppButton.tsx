@@ -1,4 +1,4 @@
-const WHATSAPP_URL = "https://wa.me/97142363350";
+const WHATSAPP_URL = "https://wa.me/971503970508";
 
 export function WhatsAppButton() {
   return (

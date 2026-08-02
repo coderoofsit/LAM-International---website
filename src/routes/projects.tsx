@@ -85,7 +85,7 @@ function ProjectsPage() {
       {/* UNIFIED GALLERY */}
       <section className="bg-cream pb-16 sm:pb-24 lg:pb-36">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 xl:grid-cols-4 lg:gap-8">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-7 lg:gap-8 lg:max-w-5xl lg:mx-auto">
             {projects.map((project, i) => (
               <Reveal key={project.id} delay={Math.min(i * 0.03, 0.24)}>
                 <article
