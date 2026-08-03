@@ -16,18 +16,18 @@ export function Footer() {
             </p>
             <div className="mt-8 flex gap-3">
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/lam_international_lighting"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-stone text-subhead transition hover:border-gold hover:text-gold"
                 aria-label="Instagram"
               >
                 <Instagram size={15} />
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/company/lam-international-llc/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-stone text-subhead transition hover:border-gold hover:text-gold"
                 aria-label="LinkedIn"
               >
@@ -68,22 +68,31 @@ export function Footer() {
 
           <div className="lg:col-span-3">
             <h4 className="mb-5 text-sm font-medium tracking-wide text-white">Contact</h4>
-            <address className="not-italic text-sm leading-relaxed text-subhead">
-              <a
-                href="https://maps.app.goo.gl/oLkXZ9Yrc6hUsLL49"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition hover:text-gold"
-              >
-                LAM International
-                <br />
-                316, European Business Centre, DIP-1
-                <br />
-                P.O. Box: 451903
-                <br />
-                Dubai - UAE
-              </a>
-            </address>
+            <div className="space-y-5 text-sm leading-relaxed text-subhead">
+              <address className="not-italic">
+                <p className="mb-1 text-[11px] tracking-[0.2em] uppercase text-gold">
+                  Dubai – UAE
+                </p>
+                <a
+                  href="https://maps.app.goo.gl/oLkXZ9Yrc6hUsLL49"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-gold"
+                >
+                  316, European Business Centre, DIP-1
+                  <br />
+                  P.O. Box: 451903
+                  <br />
+                  Dubai - UAE
+                </a>
+              </address>
+              <address className="not-italic">
+                <p className="mb-1 text-[11px] tracking-[0.2em] uppercase text-gold">
+                  Riyadh – KSA
+                </p>
+                <p>Available in Riyadh, Saudi Arabia</p>
+              </address>
+            </div>
             <a
               href="mailto:info@lam-international.com"
               className="mt-4 inline-flex items-center gap-2 text-sm text-gold hover:text-gold-soft"
@@ -95,7 +104,13 @@ export function Footer() {
               href="tel:+97142363350"
               className="mt-2 block text-sm text-subhead transition hover:text-gold"
             >
-              +971 4 236 3350
+              UAE: +971 4 236 3350
+            </a>
+            <a
+              href="tel:+966582900400"
+              className="mt-1 block text-sm text-subhead transition hover:text-gold"
+            >
+              KSA: +966 58 290 0400
             </a>
           </div>
         </div>

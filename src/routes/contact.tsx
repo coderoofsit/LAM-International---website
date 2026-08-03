@@ -11,61 +11,73 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact LAM International — office address, phone, email, and business hours in Dubai.",
+          "Contact LAM International in Dubai, UAE and Riyadh, KSA — office address, phone, email, and business hours.",
       },
       { property: "og:title", content: "Contact LAM International" },
       {
         property: "og:description",
-        content:
-          "Reach LAM International using our Dubai office contact details.",
+        content: "Reach LAM International in Dubai, UAE and Riyadh, KSA.",
       },
     ],
   }),
   component: ContactPage,
 });
 
+type ContactLine = {
+  text: string;
+  href?: string;
+  emphasis?: boolean;
+};
+
 type ContactCard = {
   icon: LucideIcon;
   title: string;
-  lines: string[];
-  href?: string;
+  lines: ContactLine[];
 };
 
 const cards: ContactCard[] = [
   {
     icon: MapPin,
-    title: "Office Address",
+    title: "Our Locations",
     lines: [
-      "LAM International",
-      "316, European Business Centre",
-      "DIP-1",
-      "P.O. Box: 451903",
-      "Dubai – UAE",
+      { text: "Dubai – UAE", emphasis: true },
+      { text: "LAM International" },
+      { text: "316, European Business Centre, DIP-1" },
+      { text: "P.O. Box: 451903" },
+      { text: "Riyadh – KSA", emphasis: true },
+      { text: "Now available in Riyadh" },
     ],
-    href: "https://maps.app.goo.gl/oLkXZ9Yrc6hUsLL49",
   },
   {
     icon: Phone,
-    title: "Phone Number",
-    lines: ["+971 4 236 3350"],
-    href: "tel:+97142363350",
+    title: "Phone Numbers",
+    lines: [
+      { text: "UAE", emphasis: true },
+      { text: "+971 4 236 3350", href: "tel:+97142363350" },
+      { text: "KSA · Riyadh", emphasis: true },
+      { text: "+966 58 290 0400", href: "tel:+966582900400" },
+    ],
   },
   {
     icon: Mail,
     title: "Email Address",
-    lines: ["info@lam-international.com"],
-    href: "mailto:info@lam-international.com",
+    lines: [
+      {
+        text: "info@lam-international.com",
+        href: "mailto:info@lam-international.com",
+      },
+    ],
   },
   {
     icon: Clock,
     title: "Business Hours",
     lines: [
-      "Monday – Thursday",
-      "8:30 AM – 6:00 PM",
-      "Friday",
-      "8:30 AM – 12:00 PM, 2:00 – 5:00 PM",
-      "Saturday – Sunday",
-      "Closed",
+      { text: "Monday – Thursday", emphasis: true },
+      { text: "8:30 AM – 6:00 PM" },
+      { text: "Friday", emphasis: true },
+      { text: "8:30 AM – 12:00 PM, 2:00 – 5:00 PM" },
+      { text: "Saturday – Sunday", emphasis: true },
+      { text: "Closed" },
     ],
   },
 ];
@@ -124,6 +136,49 @@ function FloatingParticles() {
   );
 }
 
+function ContactLines({ lines, title }: { lines: ContactLine[]; title: string }) {
+  if (title === "Business Hours") {
+    return (
+      <div className="space-y-3">
+        {[0, 2, 4].map((start) => (
+          <div key={lines[start]?.text ?? start}>
+            <p className="text-[#FFFFFF]">{lines[start]?.text}</p>
+            <p>{lines[start + 1]?.text}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-1.5">
+      {lines.map((line, index) => {
+        const className = line.emphasis
+          ? `text-[#FFFFFF] ${index > 0 ? "pt-3" : ""}`
+          : undefined;
+
+        if (line.href) {
+          return (
+            <a
+              key={`${line.text}-${index}`}
+              href={line.href}
+              className={`block transition-colors duration-300 hover:text-[#E0BC74] ${className ?? ""}`}
+            >
+              {line.text}
+            </a>
+          );
+        }
+
+        return (
+          <p key={`${line.text}-${index}`} className={className}>
+            {line.text}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 function ContactPage() {
   return (
     <PageLayout>
@@ -136,7 +191,7 @@ function ContactPage() {
               Get in <span className="text-gold">Touch</span>
             </>
           }
-          intro="We're here to assist you with premium lighting solutions. Feel free to reach us using the contact information below."
+          intro="We're here to assist you with premium lighting solutions across Dubai, UAE and Riyadh, KSA. Reach us using the contact details below."
         />
         <div className="pointer-events-none absolute inset-0 z-[5] overflow-hidden">
           <FloatingParticles />
@@ -144,7 +199,6 @@ function ContactPage() {
       </div>
 
       <div className="relative overflow-hidden bg-[#0D0D0D]">
-        {/* CONTACT CARDS */}
         <section className="relative pb-14 pt-4 sm:pb-20 lg:pb-24 lg:pt-6">
           <div className="mx-auto max-w-[1200px] px-5 sm:px-6 lg:px-10">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6">
@@ -178,36 +232,8 @@ function ContactPage() {
                     {card.title}
                   </h2>
 
-                  <div className="relative mt-4 space-y-1.5 text-sm leading-relaxed text-[#B8B8B8]">
-                    {card.href ? (
-                      <a
-                        href={card.href}
-                        target={card.href.startsWith("http") ? "_blank" : undefined}
-                        rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="block space-y-1.5 transition-colors duration-300 hover:text-[#E0BC74]"
-                      >
-                        {card.lines.map((line) => (
-                          <p key={line}>{line}</p>
-                        ))}
-                      </a>
-                    ) : card.title === "Business Hours" ? (
-                      <div className="space-y-3">
-                        <div>
-                          <p className="text-[#FFFFFF]">{card.lines[0]}</p>
-                          <p>{card.lines[1]}</p>
-                        </div>
-                        <div>
-                          <p className="text-[#FFFFFF]">{card.lines[2]}</p>
-                          <p>{card.lines[3]}</p>
-                        </div>
-                        <div>
-                          <p className="text-[#FFFFFF]">{card.lines[4]}</p>
-                          <p>{card.lines[5]}</p>
-                        </div>
-                      </div>
-                    ) : (
-                      card.lines.map((line) => <p key={line}>{line}</p>)
-                    )}
+                  <div className="relative mt-4 text-sm leading-relaxed text-[#B8B8B8]">
+                    <ContactLines lines={card.lines} title={card.title} />
                   </div>
                 </motion.article>
               ))}
@@ -215,7 +241,6 @@ function ContactPage() {
           </div>
         </section>
 
-        {/* COMPANY INFO */}
         <section className="relative pb-28 pt-6 lg:pb-36 lg:pt-10">
           <div className="mx-auto max-w-[820px] px-6 text-center lg:px-10">
             <motion.p
@@ -243,9 +268,9 @@ function ContactPage() {
               transition={{ duration: 0.9, delay: 0.16, ease }}
               className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#B8B8B8] sm:text-lg"
             >
-              Providing high-quality lighting solutions for retail, commercial,
-              hospitality, residential, and architectural projects with a commitment to
-              quality, innovation, and exceptional service.
+              Providing high-quality lighting solutions across the UAE and KSA for retail,
+              commercial, hospitality, residential, and architectural projects — with a
+              commitment to quality, innovation, and exceptional service.
             </motion.p>
 
             <motion.ul
